@@ -9,15 +9,58 @@ import Workouts from './components/Workouts';
 
 function Home() {
   return (
-    <div className="container mt-5">
-      <header className="text-center mb-5">
-        <h1 className="display-4">🏋️ OctoFit Tracker</h1>
-        <p className="lead">Track your fitness journey and compete with your team!</p>
-      </header>
-      <div className="row">
-        <div className="col-md-12">
-          <div className="alert alert-info text-center">
-            Welcome to OctoFit Tracker - Your fitness tracking application is ready!
+    <div className="page-container">
+      <div className="container">
+        <div className="home-hero rounded">
+          <h1 className="display-3">🏋️ OctoFit Tracker</h1>
+          <p className="lead">Track your fitness journey and compete with your team!</p>
+        </div>
+        
+        <div className="row g-4">
+          <div className="col-md-4">
+            <div className="card text-center">
+              <div className="card-body">
+                <h3 className="card-title">👥 Users</h3>
+                <p className="card-text">Manage and view user profiles</p>
+                <Link to="/users" className="btn btn-primary">View Users</Link>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-4">
+            <div className="card text-center">
+              <div className="card-body">
+                <h3 className="card-title">🏆 Teams</h3>
+                <p className="card-text">Explore team collaborations</p>
+                <Link to="/teams" className="btn btn-primary">View Teams</Link>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-4">
+            <div className="card text-center">
+              <div className="card-body">
+                <h3 className="card-title">🏃 Activities</h3>
+                <p className="card-text">Track fitness activities</p>
+                <Link to="/activities" className="btn btn-primary">View Activities</Link>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-6">
+            <div className="card text-center">
+              <div className="card-body">
+                <h3 className="card-title">🏅 Leaderboard</h3>
+                <p className="card-text">Check competitive rankings</p>
+                <Link to="/leaderboard" className="btn btn-success">View Leaderboard</Link>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-6">
+            <div className="card text-center">
+              <div className="card-body">
+                <h3 className="card-title">💪 Workouts</h3>
+                <p className="card-text">Get personalized workout suggestions</p>
+                <Link to="/workouts" className="btn btn-success">View Workouts</Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>

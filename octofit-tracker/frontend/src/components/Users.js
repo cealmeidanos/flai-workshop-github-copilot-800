@@ -36,29 +36,44 @@ function Users() {
   if (error) return <div className="alert alert-danger">Error: {error}</div>;
 
   return (
-    <div className="container mt-4">
-      <h2 className="mb-4">👥 Users</h2>
-      <div className="row">
-        {users.length === 0 ? (
-          <div className="col-12">
-            <div className="alert alert-info">No users found.</div>
-          </div>
-        ) : (
-          users.map((user) => (
-            <div key={user.id} className="col-md-6 col-lg-4 mb-3">
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title">{user.username}</h5>
-                  <p className="card-text">
-                    <strong>Email:</strong> {user.email}<br />
-                    {user.team && <span><strong>Team:</strong> {user.team}<br /></span>}
-                    {user.total_points !== undefined && <span><strong>Total Points:</strong> {user.total_points}</span>}
-                  </p>
-                </div>
+    <div className="page-container">
+      <div className="container">
+        <div className="page-header">
+          <h2>👥 Users</h2>
+        </div>
+        
+        <div className="card">
+          <div className="card-body">
+            {users.length === 0 ? (
+              <div className="alert alert-info">No users found.</div>
+            ) : (
+              <div className="table-responsive">
+                <table className="table table-hover align-middle">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Username</th>
+                      <th>Email</th>
+                      <th>Team</th>
+                      <th>Total Points</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {users.map((user) => (
+                      <tr key={user.id}>
+                        <td><span className="badge bg-secondary">{user.id}</span></td>
+                        <td><strong>{user.username}</strong></td>
+                        <td>{user.email}</td>
+                        <td>{user.team || <span className="text-muted">No team</span>}</td>
+                        <td><span className="badge bg-primary">{user.total_points || 0}</span></td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
-            </div>
-          ))
-        )}
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

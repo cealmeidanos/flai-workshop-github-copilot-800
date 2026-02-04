@@ -45,33 +45,55 @@ function Workouts() {
   };
 
   return (
-    <div className="container mt-4">
-      <h2 className="mb-4">💪 Workout Suggestions</h2>
-      <div className="row">
+    <div className="page-container">
+      <div className="container">
+        <div className="page-header">
+          <h2>💪 Workout Suggestions</h2>
+        </div>
+        
         {workouts.length === 0 ? (
-          <div className="col-12">
-            <div className="alert alert-info">No workout suggestions available.</div>
-          </div>
+          <div className="alert alert-info">No workout suggestions available.</div>
         ) : (
-          workouts.map((workout) => (
-            <div key={workout.id} className="col-md-6 col-lg-4 mb-3">
-              <div className="card h-100">
-                <div className="card-body">
-                  <h5 className="card-title">{workout.name}</h5>
-                  <p className="card-text">
-                    <span className={`badge ${getDifficultyBadge(workout.difficulty)} mb-2`}>
-                      {workout.difficulty}
-                    </span>
-                    <br />
-                    {workout.description && <span>{workout.description}<br /></span>}
-                    {workout.duration && <span><strong>Duration:</strong> {workout.duration} min<br /></span>}
-                    {workout.calories_estimate && <span><strong>Calories:</strong> ~{workout.calories_estimate}<br /></span>}
-                    {workout.target_muscle_groups && <span><strong>Target:</strong> {workout.target_muscle_groups}</span>}
-                  </p>
+          <div className="row g-4">
+            {workouts.map((workout) => (
+              <div key={workout.id} className="col-md-6 col-lg-4">
+                <div className="card h-100">
+                  <div className="card-body">
+                    <div className="d-flex justify-content-between align-items-start mb-3">
+                      <h5 className="card-title mb-0">{workout.name}</h5>
+                      <span className={`badge ${getDifficultyBadge(workout.difficulty)} difficulty-badge`}>
+                        {workout.difficulty}
+                      </span>
+                    </div>
+                    <p className="card-text text-muted">{workout.description || 'No description available'}</p>
+                    <hr />
+                    <div className="d-flex justify-content-between align-items-center">
+                      <div>
+                        {workout.duration && (
+                          <div className="mb-2">
+                            <strong>⏱️ Duration:</strong> {workout.duration} min
+                          </div>
+                        )}
+                        {workout.calories_estimate && (
+                          <div className="mb-2">
+                            <strong>🔥 Calories:</strong> ~{workout.calories_estimate}
+                          </div>
+                        )}
+                        {workout.target_muscle_groups && (
+                          <div>
+                            <strong>🎯 Target:</strong> {workout.target_muscle_groups}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="card-footer bg-transparent border-top-0">
+                    <button className="btn btn-primary btn-sm w-100">Start Workout</button>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))
+            ))}
+          </div>
         )}
       </div>
     </div>

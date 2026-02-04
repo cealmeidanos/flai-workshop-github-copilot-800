@@ -43,35 +43,44 @@ function Leaderboard() {
   };
 
   return (
-    <div className="container mt-4">
-      <h2 className="mb-4">🏅 Leaderboard</h2>
-      <div className="table-responsive">
-        {leaderboard.length === 0 ? (
-          <div className="alert alert-info">No leaderboard data available.</div>
-        ) : (
-          <table className="table table-striped table-hover">
-            <thead>
-              <tr>
-                <th>Rank</th>
-                <th>User/Team</th>
-                <th>Total Points</th>
-                <th>Activities</th>
-                <th>Last Update</th>
-              </tr>
-            </thead>
-            <tbody>
-              {leaderboard.map((entry, index) => (
-                <tr key={entry.id}>
-                  <td className="fs-5">{getMedalEmoji(entry.rank || index + 1)}</td>
-                  <td><strong>{entry.user_name || entry.team_name || entry.user || entry.team}</strong></td>
-                  <td><span className="badge bg-primary">{entry.total_points}</span></td>
-                  <td>{entry.total_activities || 'N/A'}</td>
-                  <td>{entry.last_activity_date ? new Date(entry.last_activity_date).toLocaleDateString() : 'N/A'}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
+    <div className="page-container">
+      <div className="container">
+        <div className="page-header">
+          <h2>🏅 Leaderboard</h2>
+        </div>
+        
+        <div className="card">
+          <div className="card-body">
+            {leaderboard.length === 0 ? (
+              <div className="alert alert-info">No leaderboard data available.</div>
+            ) : (
+              <div className="table-responsive">
+                <table className="table table-hover align-middle">
+                  <thead>
+                    <tr>
+                      <th>Rank</th>
+                      <th>User/Team</th>
+                      <th>Total Points</th>
+                      <th>Activities</th>
+                      <th>Last Update</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {leaderboard.map((entry, index) => (
+                      <tr key={entry.id}>
+                        <td><span className="medal-rank">{getMedalEmoji(entry.rank || index + 1)}</span></td>
+                        <td><strong>{entry.user_name || entry.team_name || entry.user || entry.team}</strong></td>
+                        <td><span className="badge bg-primary fs-6">{entry.total_points}</span></td>
+                        <td><span className="badge bg-info">{entry.total_activities || 0}</span></td>
+                        <td>{entry.last_activity_date ? new Date(entry.last_activity_date).toLocaleDateString() : <span className="text-muted">N/A</span>}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

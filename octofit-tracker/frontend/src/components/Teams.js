@@ -36,29 +36,44 @@ function Teams() {
   if (error) return <div className="alert alert-danger">Error: {error}</div>;
 
   return (
-    <div className="container mt-4">
-      <h2 className="mb-4">🏆 Teams</h2>
-      <div className="row">
-        {teams.length === 0 ? (
-          <div className="col-12">
-            <div className="alert alert-info">No teams found.</div>
-          </div>
-        ) : (
-          teams.map((team) => (
-            <div key={team.id} className="col-md-6 col-lg-4 mb-3">
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title">{team.name}</h5>
-                  <p className="card-text">
-                    {team.description && <span>{team.description}<br /></span>}
-                    {team.total_points !== undefined && <span><strong>Total Points:</strong> {team.total_points}<br /></span>}
-                    {team.member_count !== undefined && <span><strong>Members:</strong> {team.member_count}</span>}
-                  </p>
-                </div>
+    <div className="page-container">
+      <div className="container">
+        <div className="page-header">
+          <h2>🏆 Teams</h2>
+        </div>
+        
+        <div className="card">
+          <div className="card-body">
+            {teams.length === 0 ? (
+              <div className="alert alert-info">No teams found.</div>
+            ) : (
+              <div className="table-responsive">
+                <table className="table table-hover align-middle">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Team Name</th>
+                      <th>Description</th>
+                      <th>Members</th>
+                      <th>Total Points</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {teams.map((team) => (
+                      <tr key={team.id}>
+                        <td><span className="badge bg-secondary">{team.id}</span></td>
+                        <td><strong>{team.name}</strong></td>
+                        <td>{team.description || <span className="text-muted">No description</span>}</td>
+                        <td><span className="badge bg-info">{team.member_count || 0}</span></td>
+                        <td><span className="badge bg-primary">{team.total_points || 0}</span></td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
-            </div>
-          ))
-        )}
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
