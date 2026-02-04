@@ -64,7 +64,7 @@ function Teams() {
                         <td><span className="badge bg-secondary">{team.id}</span></td>
                         <td><strong>{team.name}</strong></td>
                         <td>{team.description || <span className="text-muted">No description</span>}</td>
-                        <td><span className="badge bg-info">{team.member_count || 0}</span></td>
+                        <td><span className="badge bg-info">{team.members ? team.members.length : 0}</span></td>
                         <td><span className="badge bg-primary">{team.total_points || 0}</span></td>
                       </tr>
                     ))}

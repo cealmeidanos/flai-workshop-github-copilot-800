@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, Team, Activity, LeaderBoard, Workout
+from .models import User, Team, Activity, LeaderBoard, Workout, Coach
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -47,3 +47,12 @@ class WorkoutSerializer(serializers.ModelSerializer):
         fields = ['id', 'title', 'description', 'difficulty', 'duration', 
                   'calories_estimate', 'activity_type', 'equipment_needed', 
                   'instructions', 'created_at']
+
+
+class CoachSerializer(serializers.ModelSerializer):
+    """Serializer for Coach model"""
+    
+    class Meta:
+        model = Coach
+        fields = ['id', 'name', 'email', 'specialization', 'bio', 
+                  'years_experience', 'certifications', 'created_at']

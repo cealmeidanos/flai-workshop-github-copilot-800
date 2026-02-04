@@ -1,10 +1,10 @@
 from rest_framework import viewsets, filters
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from .models import User, Team, Activity, LeaderBoard, Workout
+from .models import User, Team, Activity, LeaderBoard, Workout, Coach
 from .serializers import (
     UserSerializer, TeamSerializer, ActivitySerializer,
-    LeaderBoardSerializer, WorkoutSerializer
+    LeaderBoardSerializer, WorkoutSerializer, CoachSerializer
 )
 
 
@@ -135,3 +135,14 @@ class WorkoutViewSet(viewsets.ModelViewSet):
             serializer = self.get_serializer(workouts, many=True)
             return Response(serializer.data)
         return Response({'error': 'Type parameter is required'}, status=400)
+
+
+class CoachViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint for coaches
+    """
+    queryset = Coach.objects.all()
+    serializer_class = CoachSerializer
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+    search_fields = ['name', 'email', 'specialization']
+    ordering_fields = ['created_at', 'name', 'years_experience']

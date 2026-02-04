@@ -59,9 +59,11 @@ function Leaderboard() {
                   <thead>
                     <tr>
                       <th>Rank</th>
-                      <th>User/Team</th>
-                      <th>Total Points</th>
+                      <th>User</th>
+                      <th>Team</th>
                       <th>Activities</th>
+                      <th>Calories</th>
+                      <th>Duration (min)</th>
                       <th>Last Update</th>
                     </tr>
                   </thead>
@@ -69,10 +71,12 @@ function Leaderboard() {
                     {leaderboard.map((entry, index) => (
                       <tr key={entry.id}>
                         <td><span className="medal-rank">{getMedalEmoji(entry.rank || index + 1)}</span></td>
-                        <td><strong>{entry.user_name || entry.team_name || entry.user || entry.team}</strong></td>
-                        <td><span className="badge bg-primary fs-6">{entry.total_points}</span></td>
+                        <td><strong>{entry.user_name}</strong></td>
+                        <td>{entry.team || <span className="text-muted">No team</span>}</td>
                         <td><span className="badge bg-info">{entry.total_activities || 0}</span></td>
-                        <td>{entry.last_activity_date ? new Date(entry.last_activity_date).toLocaleDateString() : <span className="text-muted">N/A</span>}</td>
+                        <td><span className="badge bg-danger">{entry.total_calories || 0}</span></td>
+                        <td><span className="badge bg-success">{entry.total_duration || 0}</span></td>
+                        <td>{entry.last_updated ? new Date(entry.last_updated).toLocaleDateString() : <span className="text-muted">N/A</span>}</td>
                       </tr>
                     ))}
                   </tbody>

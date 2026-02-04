@@ -86,3 +86,20 @@ class Workout(models.Model):
     
     def __str__(self):
         return self.title
+
+
+class Coach(models.Model):
+    """Model for fitness coaches"""
+    name = models.CharField(max_length=200)
+    email = models.EmailField(unique=True)
+    specialization = models.CharField(max_length=200)
+    bio = models.TextField(blank=True)
+    years_experience = models.IntegerField(default=0)
+    certifications = models.JSONField(default=list)
+    created_at = models.DateTimeField(default=timezone.now)
+    
+    class Meta:
+        db_table = 'coaches'
+    
+    def __str__(self):
+        return self.name

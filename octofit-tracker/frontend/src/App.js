@@ -1,11 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import './App.css';
+import logo from './octofitapp-small.png';
 import Users from './components/Users';
 import Teams from './components/Teams';
 import Activities from './components/Activities';
 import Leaderboard from './components/Leaderboard';
 import Workouts from './components/Workouts';
+import Coaches from './components/Coaches';
 
 function Home() {
   return (
@@ -62,6 +64,15 @@ function Home() {
               </div>
             </div>
           </div>
+          <div className="col-md-6">
+            <div className="card text-center">
+              <div className="card-body">
+                <h3 className="card-title">👨‍🏫 Coaches</h3>
+                <p className="card-text">Meet our expert fitness coaches</p>
+                <Link to="/coaches" className="btn btn-success">View Coaches</Link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -78,7 +89,8 @@ function App() {
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
           <div className="container-fluid">
             <Link className="navbar-brand" to="/">
-              🏋️ OctoFit Tracker
+              <img src={logo} alt="OctoFit Logo" className="navbar-brand-logo" />
+              OctoFit Tracker
             </Link>
             <button
               className="navbar-toggler"
@@ -111,6 +123,9 @@ function App() {
                 <li className="nav-item">
                   <Link className="nav-link" to="/workouts">Workouts</Link>
                 </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/coaches">Coaches</Link>
+                </li>
               </ul>
             </div>
           </div>
@@ -123,6 +138,7 @@ function App() {
           <Route path="/activities" element={<Activities />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/workouts" element={<Workouts />} />
+          <Route path="/coaches" element={<Coaches />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>

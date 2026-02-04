@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User, Team, Activity, LeaderBoard, Workout
+from .models import User, Team, Activity, LeaderBoard, Workout, Coach
 
 
 @admin.register(User)

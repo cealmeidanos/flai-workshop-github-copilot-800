@@ -60,31 +60,34 @@ function Workouts() {
                 <div className="card h-100">
                   <div className="card-body">
                     <div className="d-flex justify-content-between align-items-start mb-3">
-                      <h5 className="card-title mb-0">{workout.name}</h5>
+                      <h5 className="card-title mb-0">{workout.title}</h5>
                       <span className={`badge ${getDifficultyBadge(workout.difficulty)} difficulty-badge`}>
                         {workout.difficulty}
                       </span>
                     </div>
                     <p className="card-text text-muted">{workout.description || 'No description available'}</p>
                     <hr />
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div>
-                        {workout.duration && (
-                          <div className="mb-2">
-                            <strong>⏱️ Duration:</strong> {workout.duration} min
-                          </div>
-                        )}
-                        {workout.calories_estimate && (
-                          <div className="mb-2">
-                            <strong>🔥 Calories:</strong> ~{workout.calories_estimate}
-                          </div>
-                        )}
-                        {workout.target_muscle_groups && (
-                          <div>
-                            <strong>🎯 Target:</strong> {workout.target_muscle_groups}
-                          </div>
-                        )}
-                      </div>
+                    <div className="workout-details">
+                      {workout.duration && (
+                        <div className="mb-2">
+                          <strong>⏱️ Duration:</strong> {workout.duration} min
+                        </div>
+                      )}
+                      {workout.calories_estimate && (
+                        <div className="mb-2">
+                          <strong>🔥 Calories:</strong> ~{workout.calories_estimate}
+                        </div>
+                      )}
+                      {workout.activity_type && (
+                        <div className="mb-2">
+                          <strong>🎯 Type:</strong> {workout.activity_type}
+                        </div>
+                      )}
+                      {workout.equipment_needed && workout.equipment_needed.length > 0 && (
+                        <div className="mb-2">
+                          <strong>🛠️ Equipment:</strong> {workout.equipment_needed.join(', ')}
+                        </div>
+                      )}
                     </div>
                   </div>
                   <div className="card-footer bg-transparent border-top-0">

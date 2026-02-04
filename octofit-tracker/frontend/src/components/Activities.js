@@ -57,7 +57,6 @@ function Activities() {
                       <th>Duration</th>
                       <th>Distance</th>
                       <th>Calories</th>
-                      <th>Points</th>
                       <th>Date</th>
                     </tr>
                   </thead>
@@ -69,9 +68,8 @@ function Activities() {
                         <td><span className="badge bg-info">{activity.activity_type}</span></td>
                         <td>{activity.duration} min</td>
                         <td>{activity.distance ? `${activity.distance} km` : <span className="text-muted">N/A</span>}</td>
-                        <td>{activity.calories_burned} cal</td>
-                        <td><span className="badge bg-success">{activity.points_earned}</span></td>
-                        <td>{new Date(activity.date).toLocaleDateString()}</td>
+                        <td>{activity.calories} cal</td>
+                        <td>{activity.date ? new Date(activity.date).toLocaleDateString() : <span className="text-muted">N/A</span>}</td>
                       </tr>
                     ))}
                   </tbody>

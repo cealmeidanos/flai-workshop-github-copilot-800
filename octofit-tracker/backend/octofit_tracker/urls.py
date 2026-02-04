@@ -21,7 +21,7 @@ from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from .views import (
     UserViewSet, TeamViewSet, ActivityViewSet,
-    LeaderBoardViewSet, WorkoutViewSet
+    LeaderBoardViewSet, WorkoutViewSet, CoachViewSet
 )
 
 
@@ -40,6 +40,7 @@ def api_root(request, format=None):
     - /api/activities/ - Activity tracking
     - /api/leaderboard/ - Competitive leaderboard
     - /api/workouts/ - Personalized workout suggestions
+    - /api/coaches/ - Fitness coaches
     """
     return Response({
         'users': reverse('user-list', request=request, format=format),
@@ -47,6 +48,7 @@ def api_root(request, format=None):
         'activities': reverse('activity-list', request=request, format=format),
         'leaderboard': reverse('leaderboard-list', request=request, format=format),
         'workouts': reverse('workout-list', request=request, format=format),
+        'coaches': reverse('coach-list', request=request, format=format),
         'admin': reverse('admin:index', request=request, format=format),
     })
 
@@ -58,6 +60,7 @@ router.register(r'teams', TeamViewSet, basename='team')
 router.register(r'activities', ActivityViewSet, basename='activity')
 router.register(r'leaderboard', LeaderBoardViewSet, basename='leaderboard')
 router.register(r'workouts', WorkoutViewSet, basename='workout')
+router.register(r'coaches', CoachViewSet, basename='coach')
 
 urlpatterns = [
     path('', api_root, name='api-root'),
