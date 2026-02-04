@@ -29,6 +29,17 @@ from .views import (
 def api_root(request, format=None):
     """
     API Root endpoint - provides links to all available API endpoints
+    
+    The API is accessible via:
+    - Localhost: http://localhost:8000/api/
+    - Codespace: https://$CODESPACE_NAME-8000.app.github.dev/api/
+    
+    Available endpoints:
+    - /api/users/ - User management
+    - /api/teams/ - Team management
+    - /api/activities/ - Activity tracking
+    - /api/leaderboard/ - Competitive leaderboard
+    - /api/workouts/ - Personalized workout suggestions
     """
     return Response({
         'users': reverse('user-list', request=request, format=format),
